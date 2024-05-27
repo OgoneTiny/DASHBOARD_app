@@ -10,15 +10,6 @@ from flask import Flask
 # dashboard.py
 from flask import Flask
 
-def create_app():
-    app = Flask(__name__)
-    @app.route('/')
-    def hello():
-        return "Hello, World!"
-    return app
-
-server = create_app()
-
 USER_PASS_MAP = {
     'Admin': 'Admin',
     'Admin2': 'Admin2'
@@ -26,6 +17,7 @@ USER_PASS_MAP = {
 
 # Initialize the Dash app
 app = dash.Dash(__name__, external_stylesheets=['assets/style.css'])
+server=app.server
 app.config.suppress_callback_exceptions = True
 
 auth = dash_auth.BasicAuth(app, USER_PASS_MAP)
